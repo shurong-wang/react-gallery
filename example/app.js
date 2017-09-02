@@ -28,29 +28,33 @@ class App extends React.Component {
                 thumbnail: `${PREFIX_URL}4v.jpg`,
                 original: `${PREFIX_URL}4v.jpg`
             }
-        ].concat(this._getStaticImages());
+        ].concat(this.getImages());
     }
 
     componentDidUpdate(prevProps, prevState) {
 
     }
 
-    _onImageClick(event) {
-        console.debug('clicked on image', event.target, 'at index', this._imageGallery.getCurrentIndex());
+    onImageClick(event) {
+        console.debug('clicked on image', event.target);
+        console.debug('at index', this._imageGallery.getCurrentIndex());
     }
 
-    _onImageLoad(event) {
+    onImageLoad(event) {
         console.debug('loaded image', event.target.src);
     }
 
-    _onSlide(index) {
+    onSlide(index) {
         console.debug('slid to index', index);
     }
 
-    _getStaticImages() {
+    getImages() {
         let images = [];
         for (let i = 2; i < 12; i++) {
-            images.push({original: `${PREFIX_URL}${i}.jpg`, thumbnail: `${PREFIX_URL}${i}t.jpg`});
+            images.push({
+                original: `${PREFIX_URL}${i}.jpg`,
+                thumbnail: `${PREFIX_URL}${i}t.jpg`
+            });
         }
 
         return images;
@@ -61,13 +65,14 @@ class App extends React.Component {
             <section className='app'>
                 <ImageGallery
                     ref={i => this._imageGallery = i}
+                    defaultImage={''}
                     items={this.images}
                     showIndex={true}
                     showBullets={true}
                     lazyLoad={false}
-                    onClick={this._onImageClick.bind(this)}
-                    onImageLoad={this._onImageLoad}
-                    onSlide={this._onSlide.bind(this)}
+                    onClick={this.onImageClick.bind(this)}
+                    onImageLoad={this.onImageLoad}
+                    onSlide={this.onSlide.bind(this)}
                 />
             </section>
         );
@@ -75,5 +80,6 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-    <App/>, document.getElementById('container')
+    <App/>,
+    document.getElementById('container')
 );
