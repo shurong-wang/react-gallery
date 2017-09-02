@@ -31,9 +31,7 @@ class App extends React.Component {
         ].concat(this.getImages());
     }
 
-    componentDidUpdate(prevProps, prevState) {
-
-    }
+    componentDidUpdate(prevProps, prevState) {}
 
     onImageClick(event) {
         console.debug('clicked on image', event.target);
