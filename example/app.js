@@ -15,17 +15,20 @@ class App extends React.Component {
             {
                 original: `${PREFIX_URL}1.jpg`,
                 thumbnail: `${PREFIX_URL}1t.jpg`,
+                thumbnailLabel: '缩略图1',
                 originalClass: 'featured-slide',
                 thumbnailClass: 'featured-thumb',
                 description: 'Custom class for slides & thumbnails'
             },
             {
                 thumbnail: `${PREFIX_URL}3v.jpg`,
+                thumbnailLabel: '缩略图3',
                 original: `${PREFIX_URL}3v.jpg`,
                 description: 'Render custom slides within the gallery'
             },
             {
                 thumbnail: `${PREFIX_URL}4v.jpg`,
+                thumbnailLabel: '缩略图4',
                 original: `${PREFIX_URL}4v.jpg`
             }
         ].concat(this.getImages());
@@ -50,8 +53,9 @@ class App extends React.Component {
         let images = [];
         for (let i = 2; i < 12; i++) {
             images.push({
-                original: `${PREFIX_URL}${i}.jpg`,
-                thumbnail: `${PREFIX_URL}${i}t.jpg`
+                original: <div className='item-content'>{`${PREFIX_URL}${i}.jpg`}</div>,
+                thumbnail: `${PREFIX_URL}${i}t.jpg`,
+                thumbnailLabel: `缩略图${i}`
             });
         }
 

@@ -139,9 +139,10 @@ $ig-transparent: rgba(0, 0, 0, 0) !default;
   &.center {
     position: relative;
   }
-
-  img {
-    width: 100%;
+  .image-gallery-image {
+    img, div {
+      width: 100%;
+    }
   }
 
   .image-gallery-description {

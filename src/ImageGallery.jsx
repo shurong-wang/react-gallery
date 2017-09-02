@@ -870,25 +870,30 @@ export default class ImageGallery extends React.Component {
 
     _renderItem = item => {
         const onImageError = this.props.onImageError || this._handleImageError;
+        const content = typeof(item.original) === 'string'
+        ? (
+            <img
+                src={item.original}
+                alt={item.originalAlt}
+                srcSet={item.srcSet}
+                sizes={item.sizes}
+                title={item.originalTitle}
+                onLoad={this.props.onImageLoad}
+                onError={onImageError}
+            />
+        )
+        : item.original;
+
+        const description = item.description && (
+            <span className='image-gallery-description'>
+                {item.description}
+            </span>
+        );
 
         return (
             <div className='image-gallery-image'>
-                <img
-                    src={item.original}
-                    alt={item.originalAlt}
-                    srcSet={item.srcSet}
-                    sizes={item.sizes}
-                    title={item.originalTitle}
-                    onLoad={this.props.onImageLoad}
-                    onError={onImageError}
-                />
-                {
-                    item.description && (
-                        <span className='image-gallery-description'>
-                            {item.description}
-                        </span>
-                    )
-                }
+                {content}
+                {description}
             </div>
         );
     }
@@ -1006,7 +1011,7 @@ export default class ImageGallery extends React.Component {
                         aria-label={`Go to Slide ${index + 1}`}
                         className={'image-gallery-thumbnail ' + activeClass + thumbnailClass}
                         onClick={event => {
-                            this.slideToIndex.call(this, index, event);
+                            this.slideToIndex(index, event);
                             if (this.props.onThumbnailClick) {
                                 this.props.onThumbnailClick(event, index);
                             }
@@ -1023,7 +1028,7 @@ export default class ImageGallery extends React.Component {
                         key={index}
                         type='button'
                         className={'image-gallery-bullet ' + activeClass}
-                        onClick={event => this.slideToIndex.call(this, index, event)}
+                        onClick={event => this.slideToIndex(index, event)}
                         aria-pressed={currentIndex === index ? 'true' : 'false'}
                         aria-label={`Go to Slide ${index + 1}`}
                     />

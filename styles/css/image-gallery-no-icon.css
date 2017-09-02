@@ -102,7 +102,7 @@
   width: 100%; }
   .image-gallery-slide.center {
     position: relative; }
-  .image-gallery-slide img {
+  .image-gallery-slide .image-gallery-image img, .image-gallery-slide .image-gallery-image div {
     width: 100%; }
   .image-gallery-slide .image-gallery-description {
     background: rgba(0, 0, 0, 0.4);

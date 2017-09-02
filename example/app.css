@@ -22,8 +22,6 @@ label {
     margin-left: 5px;
 }
 
-
-
 .app-header {
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -195,4 +193,11 @@ input.app-interval-input {
 
 .app-checkboxes li {
     display: block;
+}
+
+.item-content {
+    width: 820px;
+    height: 547px;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, .4);
 }
